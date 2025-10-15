@@ -61,7 +61,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <Script
-          strategy="afterInteractive" >
+          strategy="afterInteractive" id="tawk-script">
           {`
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
