@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -58,18 +59,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-          fontSans.variable
-        )}
-
-      >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            {`
-            <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+      <head>
+        <Script
+          strategy="afterInteractive" >
+          {`
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -79,9 +72,19 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
-</script>
-<!--End of Tawk.to Script-->
             `}
+        </Script>
+      </head>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
+          fontSans.variable
+        )}
+
+      >
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <TooltipProvider delayDuration={0}>
+
             {children}
             <Navbar />
           </TooltipProvider>
